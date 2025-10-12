@@ -1,0 +1,133 @@
+<!-- forums.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect Forums</title>
+    <link rel="stylesheet" href="forums-styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <img src="somaiya.svg" alt="Somaiya Logo" height="50">
+        <span class="nav-title">Subject Forums</span>
+        <a class="nav-link" href="dashboard.html">Back to Dashboard</a>
+    </nav>
+
+    <div class="container">
+        <h1>Subject Wise Forums</h1>
+        <p>Connect and discuss with teachers and students across all semesters and departments</p>
+
+        <div class="selectors">
+            <label>Choose Department:</label>
+            <select id="department" onchange="updateSemesters()">
+                <option value="ai">AI & DS</option>
+                <option value="comp">Computer Engineering</option>
+                <option value="it">Information Technology</option>
+                <option value="extc">EXTC</option>
+            </select>
+            <label>Choose Semester:</label>
+            <select id="semester" onchange="showSubjects()">
+                <!-- Filled dynamically -->
+            </select>
+        </div>
+
+        <div id="subjects">
+            <!-- Subjects and forums listed here -->
+        </div>
+    </div>
+
+    <script>
+        // Subject data (add/update more based on search/website)
+        const subjectsData = {
+            ai: {
+                1: ["Engineering Mathematics I", "Engineering Physics", "Engineering Chemistry", "Engineering Mechanics", "Basic Electrical Engineering", "(S/A/T)-I", "Basic Workshop Practice-I"],
+                2: ["Engineering Mathematics II", "Physics and Nanotechnology", "Materials Chemistry", "Engineering Graphics", "Computer Programming", "Professional Communication Skills", "(S/A/T)-II", "Basic Workshop Practice-II"],
+                3: ["Applications of Mathematics in Engineering-I", "Data Structure and Algorithms", "Design and Analysis of Algorithms", "Object Oriented Programming with Java", "Discrete Structure for Data Science", "Labs, Project, Web Design"],
+                4: ["Applications of Mathematics in Engineering-II", "Analysis of Algorithm", "Database Management System", "Operating System", "Microprocessor", "Labs, Project, Skill Based Learning"],
+                5: ["Artificial Intelligence", "Data Warehousing and Mining", "Software Engineering", "Information Theory and Coding", "Computer Networks", "Labs, Ethics, Minor Projects, Internship"],
+                6: ["Artificial Neural Network", "Machine Learning", "Data Analytics and Visualization", "Big Data Analytics", "AI in E-Commerce", "Labs, Projects, Internships"],
+                7: ["Deep Learning", "Natural Language Processing", "Speech Processing", "Internet of Everything", "Cryptography and Network Security", "Labs, Electives"],
+                8: ["Reinforcement Learning", "High Performance Computing", "ML in Bioinformatics", "Quantum Computing", "Project Management", "Major Project, Internship"]
+            },
+            comp: {
+                1: ["Engineering Mathematics-I", "Engineering Physics", "Engineering Chemistry", "Engineering Mechanics", "Basic Electrical Engineering", "(S/A/T)--I", "Basic Workshop Practice-I"],
+                2: ["Engineering Mathematics-II", "Physics and Nanotechnology", "Materials Chemistry", "Engineering Graphics", "Computer Programming", "Professional Communication Skills", "(S/A/T) –II", "Basic Workshop Practice-II"],
+                3: ["Applications of Mathematics in Engineering-I", "Discrete Structures and Graph Theory", "Data Structure", "Digital Logic & Computer Architecture", "Computer Graphics", "Labs, Mini Project, Skill Based Learning"],
+                4: ["Applications of Mathematics in Engineering-II", "Analysis of Algorithms", "Database Management System", "Operating System", "Microprocessor", "Labs, Mini Project, Skill Based Learning"],
+                5: ["Theory of Computer Science", "Software Engineering", "Computer Network", "Data Warehousing and Mining", "Department Level Elective", "Labs, Projects"],
+                6: ["System Programming & Compiler Construction", "Cryptography & System Security", "Mobile Computing", "Artificial Intelligence", "Department Level Elective", "Labs, Projects"],
+                7: ["Machine Learning", "Big Data Analytics", "Computer Vision", "Adhoc Wireless Network", "Ethical Hacking and Security", "Labs, Projects"],
+                8: ["Distributed Computing", "Applied Data Science", "Software Defined Network", "Digital Forensic", "Deep Learning", "Labs, Projects"]
+            },
+            it: {
+                1: ["Engineering Mathematics-I", "Engineering Physics", "Engineering Chemistry", "Engineering Mechanics", "Basic Electrical Engineering", "Basic Workshop Practice-I", "(S/A/T)-I"],
+                2: ["Engineering Mathematics-II", "Physics and Nanotechnology", "Materials Chemistry", "Engineering Graphics", "Computer Programming", "Professional Communication Skills", "Basic Workshop Practice-II", "(S/A/T)-II"],
+                3: ["Applied Mathematics III", "Logic Design", "Data Structures & Analysis", "Object Oriented Programming", "Labs, Skill-Based Learning"],
+                4: ["Applied Mathematics IV", "Database Management", "Operating Systems", "Computer Networks", "Labs, Skill-Based Learning"],
+                5: ["Software Engineering", "Information Theory and Coding", "Web Programming", "Department Level Elective", "Labs, Projects"],
+                6: ["Theory of Computation", "System Software", "Mobile Communication", "Design and Analysis of Algorithms", "Labs, Projects"],
+                7: ["Cloud Computing", "Artificial Intelligence", "Project Management", "Department Level Elective", "Labs, Projects"],
+                8: ["Cyber Security", "Major Project", "Seminar", "Internship", "Department Level Elective"]
+            },
+            extc: {
+                1: ["Engineering Mathematics-I", "Engineering Physics", "Engineering Chemistry", "Engineering Mechanics", "Basic Electrical Engineering", "Basic Workshop Practice-I"],
+                2: ["Engineering Mathematics-II", "Physics and Nanotechnology", "Materials Chemistry", "Engineering Graphics", "Computer Programming", "Professional Communication Skills", "Basic Workshop Practice-II"],
+                3: ["Network Analysis", "Analog Electronics", "Digital System Design", "Signals & Systems", "Labs, Projects"],
+                4: ["Microprocessors", "Control Systems", "Communication Systems", "Electromagnetic Field Theory", "Labs, Projects"],
+                5: ["Digital Signal Processing", "Analog Communication", "VLSI Design", "Power Electronics", "Labs, Projects"],
+                6: ["Digital Communication", "Embedded Systems", "Computer Communication Networks", "Department Electives", "Labs, Projects"],
+                7: ["Microwave Engineering", "Mobile Communication System", "Optical Communication", "Labs, Electives"],
+                8: ["Project Management", "Major Project", "Industrial Training", "Department Electives", "Seminar"]
+            }
+        };
+
+        // Populate semester selector per department
+        function updateSemesters() {
+            const department = document.getElementById('department').value;
+            const semesterSelect = document.getElementById('semester');
+            semesterSelect.innerHTML = "";
+            for (let i = 1; i <= 8; i++) {
+                let opt = document.createElement('option');
+                opt.value = i;
+                opt.text = 'Semester ' + i;
+                semesterSelect.appendChild(opt);
+            }
+            showSubjects();
+        }
+
+        // Show subjects for the selected department and semester
+        function showSubjects() {
+            const department = document.getElementById('department').value;
+            const semester = document.getElementById('semester').value;
+            const subjList = subjectsData[department][semester] || [];
+            let html = "";
+            subjList.forEach(subject => {
+                html += `
+                    <div class="forum-card">
+                        <h3>${subject}</h3>
+                        <div class="forum-actions">
+                            <button onclick="openForum('${subject}')">Open Forum</button>
+                        </div>
+                        <div class="forum-sample">
+                            <strong>Latest Post:</strong>
+                            <div class="sample-post">No posts yet. Start the discussion!</div>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('subjects').innerHTML = html;
+        }
+
+        function openForum(subject) {
+            alert('Discussion board for: ' + subject + ' coming soon!');
+        }
+
+        // On initial load
+        updateSemesters();
+    </script>
+</body>
+
+</html>

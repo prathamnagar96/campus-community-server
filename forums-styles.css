@@ -1,0 +1,127 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f7f7f7;
+}
+
+.navbar {
+    background: #8B0000;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    height: 60px;
+}
+
+.nav-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 18px;
+    background: #DC143C;
+    border-radius: 7px;
+    transition: background 0.3s;
+}
+
+.nav-link:hover {
+    background: #fff;
+    color: #8B0000;
+}
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    background: white;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(139, 0, 0, 0.09);
+}
+
+h1 {
+    color: #8B0000;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+p {
+    color: #666;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.semester-select {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.semester-select label {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-right: 10px;
+    color: #DC143C;
+}
+
+.semester-select select {
+    padding: 8px 18px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+#subjects {
+    margin-top: 20px;
+}
+
+.forum-card {
+    background: #fff8f8;
+    border-left: 5px solid #8B0000;
+    margin-bottom: 22px;
+    padding: 22px 18px;
+    border-radius: 8px;
+    box-shadow: 0 1px 8px rgba(221, 41, 62, 0.07);
+}
+
+.forum-card h3 {
+    margin-bottom: 10px;
+    color: #8B0000;
+    font-size: 1.18rem;
+}
+
+.forum-actions {
+    margin-bottom: 12px;
+}
+
+.forum-actions button {
+    padding: 8px 15px;
+    margin-right: 12px;
+    border: none;
+    background: #8B0000;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.forum-actions button:hover {
+    background: #DC143C;
+}
+
+.forum-sample {
+    font-size: 0.97rem;
+    color: #333;
+    margin-top: 8px;
+}
+
+.sample-post {
+    margin-top: 6px;
+    background: #f1f1f1;
+    padding: 6px 11px;
+    border-radius: 5px;
+    color: #666;
+}

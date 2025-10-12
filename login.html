@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CampusConnect</title>
+    <link rel="stylesheet" href="login-styles.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="somaiya.svg" alt="Somaiya Logo" height="70">
+        </div>
+        <h1>Welcome to CampusConnect</h1>
+        <p>Please enter your credentials to continue</p>
+        <form id="loginForm">
+            <input type="text" id="userId" placeholder="User ID *" required>
+            <input type="password" id="password" placeholder="Password *" required>
+            <div class="options">
+                <label><input type="checkbox"> Remember Me</label>
+                <a href="#" class="forgot">Forgot Password?</a>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        <div class="divider">OR</div>
+        <button class="email-login" onclick="alert('Email login coming soon!')">
+            Login with Somaiya Email ID
+        </button>
+        <p class="signup-link">Don't have an account? <a href="#">Sign Up</a></p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Login functionality will be connected to backend!');
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+
+</html>
