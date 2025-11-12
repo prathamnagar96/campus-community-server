@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base - CampusConnect</title>
+    <link rel="stylesheet" href="knowledge-base-styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="somaiya.svg" alt="Somaiya Logo" height="50">
+            </div>
+            <nav>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="clubs.html">Club Hub</a>
+                <a href="forums.html">Forums</a>
+                <a href="ask-questions.html">Ask Questions</a>
+                <a href="knowledge-base.html" class="active">Knowledge Base</a>
+                <a href="index.html" onclick="localStorage.removeItem('isLoggedIn')">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <h1>Knowledge Base</h1>
+            <p>Searchable repository of solutions, resources, and academic materials</p>
+            <div class="search-bar">
+                <input type="text" id="mainSearch" placeholder="Search for topics, solutions, resources...">
+                <button class="search-btn">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories-section">
+        <div class="container">
+            <h2>Browse by Category</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="filterByCategory('mathematics')">
+                    <div class="category-icon">📐</div>
+                    <h3>Mathematics</h3>
+                    <p>245 Resources</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('physics')">
+                    <div class="category-icon">⚛️</div>
+                    <h3>Physics</h3>
+                    <p>189 Resources</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('chemistry')">
+                    <div class="category-icon">🧪</div>
+                    <h3>Chemistry</h3>
+                    <p>156 Resources</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('cs')">
+                    <div class="category-icon">💻</div>
+                    <h3>Computer Science</h3>
+                    <p>312 Resources</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('engineering')">
+                    <div class="category-icon">⚙️</div>
+                    <h3>Engineering</h3>
+                    <p>278 Resources</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('notes')">
+                    <div class="category-icon">📝</div>
+                    <h3>Study Notes</h3>
+                    <p>421 Resources</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="resources-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Popular Resources</h2>
+                <select id="sortBy">
+                    <option value="popular">Most Popular</option>
+                    <option value="recent">Recently Added</option>
+                    <option value="helpful">Most Helpful</option>
+                </select>
+            </div>
+
+            <div class="resource-list">
+                <div class="resource-card">
+                    <div class="resource-type">📄 Document</div>
+                    <h3>Complete Guide to Data Structures & Algorithms</h3>
+                    <p>Comprehensive notes covering all DSA topics with examples and practice problems.</p>
+                    <div class="resource-meta">
+                        <span>📚 Computer Science</span>
+                        <span>👍 324 helpful</span>
+                        <span>📅 Updated 2 days ago</span>
+                    </div>
+                    <div class="resource-actions">
+                        <button class="btn-view">View Resource</button>
+                        <button class="btn-download">Download</button>
+                        <button class="btn-bookmark">Bookmark</button>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-type">🎥 Video</div>
+                    <h3>Calculus Integration Techniques Explained</h3>
+                    <p>Step-by-step video tutorials covering all integration methods with solved examples.</p>
+                    <div class="resource-meta">
+                        <span>📚 Mathematics</span>
+                        <span>👍 267 helpful</span>
+                        <span>📅 Updated 5 days ago</span>
+                    </div>
+                    <div class="resource-actions">
+                        <button class="btn-view">View Resource</button>
+                        <button class="btn-download">Download</button>
+                        <button class="btn-bookmark">Bookmark</button>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-type">📄 Document</div>
+                    <h3>Quantum Physics Solved Problems</h3>
+                    <p>Collection of solved problems on quantum mechanics, wave functions, and uncertainty principle.
+                    </p>
+                    <div class="resource-meta">
+                        <span>📚 Physics</span>
+                        <span>👍 198 helpful</span>
+                        <span>📅 Updated 1 week ago</span>
+                    </div>
+                    <div class="resource-actions">
+                        <button class="btn-view">View Resource</button>
+                        <button class="btn-download">Download</button>
+                        <button class="btn-bookmark">Bookmark</button>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-type">📊 Presentation</div>
+                    <h3>Machine Learning Fundamentals</h3>
+                    <p>Introduction to ML concepts, algorithms, and practical applications with Python code.</p>
+                    <div class="resource-meta">
+                        <span>📚 Computer Science</span>
+                        <span>👍 412 helpful</span>
+                        <span>📅 Updated 3 days ago</span>
+                    </div>
+                    <div class="resource-actions">
+                        <button class="btn-view">View Resource</button>
+                        <button class="btn-download">Download</button>
+                        <button class="btn-bookmark">Bookmark</button>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-type">📄 Document</div>
+                    <h3>Organic Chemistry Reaction Mechanisms</h3>
+                    <p>Detailed notes on reaction mechanisms with arrow pushing and step-by-step explanations.</p>
+                    <div class="resource-meta">
+                        <span>📚 Chemistry</span>
+                        <span>👍 234 helpful</span>
+                        <span>📅 Updated 4 days ago</span>
+                    </div>
+                    <div class="resource-actions">
+                        <button class="btn-view">View Resource</button>
+                        <button class="btn-download">Download</button>
+                        <button class="btn-bookmark">Bookmark</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contribute-section">
+        <div class="container">
+            <h2>Contribute to Knowledge Base</h2>
+            <p>Share your notes, solutions, and resources with the community</p>
+            <button class="btn-primary" id="contributeBtn">Upload Resource</button>
+        </div>
+    </section>
+
+    <!-- Upload Resource Modal -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Upload Resource</h2>
+            <form id="uploadForm">
+                <input type="text" id="resourceTitle" placeholder="Resource Title *" required>
+                <textarea id="resourceDesc" placeholder="Description *" rows="4" required></textarea>
+                <select id="resourceCategory" required>
+                    <option value="">Select Category *</option>
+                    <option value="mathematics">Mathematics</option>
+                    <option value="physics">Physics</option>
+                    <option value="chemistry">Chemistry</option>
+                    <option value="cs">Computer Science</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="notes">Study Notes</option>
+                </select>
+                <select id="resourceType" required>
+                    <option value="">Select Type *</option>
+                    <option value="document">Document (PDF, DOC)</option>
+                    <option value="video">Video</option>
+                    <option value="presentation">Presentation</option>
+                    <option value="code">Code/Project</option>
+                </select>
+                <input type="file" id="resourceFile" required>
+                <input type="text" id="resourceTags" placeholder="Tags (comma separated)">
+                <button type="submit" class="btn-primary">Upload Resource</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('uploadModal');
+        const contributeBtn = document.getElementById('contributeBtn');
+        const closeBtn = document.querySelector('.close');
+
+        contributeBtn.addEventListener('click', () => {
+            modal.style.display = 'block';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        document.getElementById('uploadForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Resource uploaded successfully! It will be reviewed before publishing.');
+            modal.style.display = 'none';
+            document.getElementById('uploadForm').reset();
+        });
+
+        document.getElementById('mainSearch').addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                alert('Search feature will be implemented with backend');
+            }
+        });
+
+        document.querySelector('.search-btn').addEventListener('click', () => {
+            alert('Search feature will be implemented with backend');
+        });
+
+        function filterByCategory(category) {
+            alert(`Filtering by ${category} category`);
+        }
+
+        document.querySelectorAll('.btn-view, .btn-download, .btn-bookmark').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('This feature will be connected to backend');
+            });
+        });
+    </script>
+</body>
+
+</html>

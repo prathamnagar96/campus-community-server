@@ -18,12 +18,13 @@
         }
 
         .navbar {
-            background: #8B0000;
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
             color: white;
             padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .navbar h2 {
@@ -34,24 +35,43 @@
             background: white;
             color: #8B0000;
             border: none;
-            padding: 8px 20px;
-            border-radius: 5px;
+            padding: 10px 25px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .navbar button:hover {
+            transform: scale(1.05);
         }
 
         .dashboard {
-            max-width: 1200px;
-            margin: 40px auto;
+            max-width: 1400px;
+            margin: 30px auto;
             padding: 0 20px;
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 30px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .welcome {
             background: white;
             padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
 
         .welcome h1 {
@@ -61,7 +81,7 @@
 
         .quick-links {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
         }
 
@@ -69,20 +89,186 @@
             background: white;
             padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             text-align: center;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             border-top: 4px solid #8B0000;
         }
 
         .link-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(139, 0, 0, 0.25);
         }
 
         .link-card h3 {
             color: #8B0000;
             margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .link-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Feed Section */
+        .feed-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .feed-section h2 {
+            color: #8B0000;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .feed-item {
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 15px;
+        }
+
+        .feed-item:last-child {
+            border-bottom: none;
+        }
+
+        .feed-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .feed-avatar {
+            width: 45px;
+            height: 45px;
+            background: #8B0000;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+
+        .feed-info h4 {
+            color: #333;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .feed-meta {
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        .feed-content {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .feed-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .feed-tag {
+            background: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .feed-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .feed-action {
+            color: #8B0000;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: opacity 0.3s;
+        }
+
+        .feed-action:hover {
+            opacity: 0.7;
+        }
+
+        /* Sidebar Widgets */
+        .widget {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .widget h3 {
+            color: #8B0000;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .notification-item {
+            padding: 12px;
+            background: #fff8f8;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 3px solid #8B0000;
+        }
+
+        .notification-item p {
+            color: #333;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .notification-time {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        .trending-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .trending-item:last-child {
+            border-bottom: none;
+        }
+
+        .trending-item h4 {
+            color: #333;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .trending-item p {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .quick-links {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -90,36 +276,221 @@
 <body>
     <nav class="navbar">
         <h2>CampusConnect Dashboard</h2>
-        <button onclick="window.location.href='index.html'">Logout</button>
+        <button onclick="logout()">Logout</button>
     </nav>
 
     <div class="dashboard">
-        <div class="welcome">
-            <h1>Welcome Back, Student!</h1>
-            <p>Explore clubs, ask questions, and stay connected with your campus community</p>
+        <div class="main-content">
+            <div class="welcome">
+                <h1>Welcome Back, Student!</h1>
+                <p>Explore clubs, ask questions, and stay connected with your campus community</p>
+            </div>
+
+            <div class="quick-links">
+                <div class="link-card" onclick="window.location.href='clubs.html'">
+                    <h3>🏛️ Club Hub</h3>
+                    <p>Explore and join clubs</p>
+                </div>
+
+                <div class="link-card" onclick="window.location.href='ask-questions.html'">
+                    <h3>❓ Ask Questions</h3>
+                    <p>Get help from peers and teachers</p>
+                </div>
+
+                <div class="link-card" onclick="window.location.href='forums.html'">
+                    <h3>👥 Forums</h3>
+                    <p>Join discussions</p>
+                </div>
+
+                <div class="link-card" onclick="window.location.href='knowledge-base.html'">
+                    <h3>📚 Knowledge Base</h3>
+                    <p>Browse resources and solutions</p>
+                </div>
+            </div>
+
+            <!-- Personalized Feed -->
+            <div class="feed-section">
+                <h2>Your Personalized Feed</h2>
+
+                <div class="feed-item">
+                    <div class="feed-header">
+                        <div class="feed-avatar">S4</div>
+                        <div class="feed-info">
+                            <h4>S4DS Student Chapter</h4>
+                            <span class="feed-meta">2 hours ago • Club Update</span>
+                        </div>
+                    </div>
+                    <div class="feed-content">
+                        KnowBuild '25 – Institute level Hackathon is happening on 4th October! Team size: 2–4 members.
+                        Prize Pool: ₹8,000. Register now!
+                    </div>
+                    <div class="feed-tags">
+                        <span class="feed-tag">Hackathon</span>
+                        <span class="feed-tag">S4DS</span>
+                    </div>
+                    <div class="feed-actions">
+                        <span class="feed-action">👍 Like</span>
+                        <span class="feed-action">💬 Comment</span>
+                        <span class="feed-action">🔗 Share</span>
+                    </div>
+                </div>
+
+                <div class="feed-item">
+                    <div class="feed-header">
+                        <div class="feed-avatar">JD</div>
+                        <div class="feed-info">
+                            <h4>John Doe</h4>
+                            <span class="feed-meta">4 hours ago • Question</span>
+                        </div>
+                    </div>
+                    <div class="feed-content">
+                        Can someone explain the difference between dynamic programming and divide & conquer approach?
+                    </div>
+                    <div class="feed-tags">
+                        <span class="feed-tag">Algorithms</span>
+                        <span class="feed-tag">DSA</span>
+                    </div>
+                    <div class="feed-actions">
+                        <span class="feed-action">💬 5 Answers</span>
+                        <span class="feed-action">🔖 Save</span>
+                    </div>
+                </div>
+
+                <div class="feed-item">
+                    <div class="feed-header">
+                        <div class="feed-avatar">IE</div>
+                        <div class="feed-info">
+                            <h4>IEEE KJSIT</h4>
+                            <span class="feed-meta">1 day ago • Event Announcement</span>
+                        </div>
+                    </div>
+                    <div class="feed-content">
+                        Renaissance 2025 - The Ultimate Tech Fest is coming on 9th & 10th October! Don't miss out on
+                        amazing competitions and workshops.
+                    </div>
+                    <div class="feed-tags">
+                        <span class="feed-tag">Tech Fest</span>
+                        <span class="feed-tag">IEEE</span>
+                    </div>
+                    <div class="feed-actions">
+                        <span class="feed-action">👍 Like</span>
+                        <span class="feed-action">💬 Comment</span>
+                        <span class="feed-action">🔗 Share</span>
+                    </div>
+                </div>
+
+                <div class="feed-item">
+                    <div class="feed-header">
+                        <div class="feed-avatar">KB</div>
+                        <div class="feed-info">
+                            <h4>Knowledge Base</h4>
+                            <span class="feed-meta">2 days ago • Resource Added</span>
+                        </div>
+                    </div>
+                    <div class="feed-content">
+                        New resource added: "Complete Guide to Data Structures & Algorithms" - Comprehensive notes with
+                        examples and practice problems.
+                    </div>
+                    <div class="feed-tags">
+                        <span class="feed-tag">DSA</span>
+                        <span class="feed-tag">Study Material</span>
+                    </div>
+                    <div class="feed-actions">
+                        <span class="feed-action">📥 Download</span>
+                        <span class="feed-action">🔖 Bookmark</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="quick-links">
-            <div class="link-card" onclick="window.location.href='clubs.html'">
-                <h3>🏛️ Club Hub</h3>
-                <p>Explore and join clubs</p>
+        <div class="sidebar">
+            <!-- Notifications Widget -->
+            <div class="widget">
+                <h3>Recent Notifications</h3>
+                <div class="notification-item">
+                    <p>Your question received a new answer</p>
+                    <span class="notification-time">30 minutes ago</span>
+                </div>
+                <div class="notification-item">
+                    <p>S4DS posted a new event</p>
+                    <span class="notification-time">2 hours ago</span>
+                </div>
+                <div class="notification-item">
+                    <p>Assignment deadline tomorrow</p>
+                    <span class="notification-time">5 hours ago</span>
+                </div>
             </div>
 
-            <div class="link-card" onclick="alert('Q&A System coming soon!')">
-                <h3>❓ Ask Questions</h3>
-                <p>Get help from peers</p>
-            </div>
-            <div class="link-card" onclick="window.location.href='forums.html'">
-                <h3>👥 Forums</h3>
-                <p>Join discussions</p>
+            <!-- Trending Topics Widget -->
+            <div class="widget">
+                <h3>Trending Topics</h3>
+                <div class="trending-item">
+                    <h4>#KnowBuild2025</h4>
+                    <p>45 discussions</p>
+                </div>
+                <div class="trending-item">
+                    <h4>#Renaissance2025</h4>
+                    <p>32 discussions</p>
+                </div>
+                <div class="trending-item">
+                    <h4>#DSADoubt</h4>
+                    <p>28 discussions</p>
+                </div>
+                <div class="trending-item">
+                    <h4>#QuantumPhysics</h4>
+                    <p>19 discussions</p>
+                </div>
             </div>
 
-            <div class="link-card" onclick="alert('Knowledge Base coming soon!')">
-                <h3>📚 Knowledge Base</h3>
-                <p>Browse resources</p>
+            <!-- Suggested Clubs Widget -->
+            <div class="widget">
+                <h3>Suggested Clubs</h3>
+                <div class="trending-item">
+                    <h4>CSI KJSIT</h4>
+                    <p>Computer Society of India</p>
+                </div>
+                <div class="trending-item">
+                    <h4>IASC</h4>
+                    <p>Innovation & Startup Cell</p>
+                </div>
+                <div class="trending-item">
+                    <h4>Nakshatra</h4>
+                    <p>Marathi Cultural Club</p>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('rememberedUserId');
+            localStorage.removeItem('rememberedPassword');
+            window.location.href = 'index.html';
+        }
+
+        // Check if user is logged in
+        window.addEventListener('load', function () {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (!isLoggedIn) {
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Interactive feed actions
+        document.querySelectorAll('.feed-action').forEach(action => {
+            action.addEventListener('click', function () {
+                const actionText = this.textContent.trim();
+                if (actionText.includes('Like')) {
+                    this.style.color = '#DC143C';
+                    this.textContent = '❤️ Liked';
+                } else if (actionText.includes('Save') || actionText.includes('Bookmark')) {
+                    this.style.color = '#28a745';
+                    this.textContent = '✓ Saved';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -9,15 +9,30 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <img src="somaiya.svg" alt="Somaiya Logo" height="50">
-        <span class="nav-title">Club Hub</span>
-        <a class="nav-link" href="dashboard.html">Back to Dashboard</a>
-    </nav>
-    <div class="container">
-        <h1>Campus Clubs</h1>
-        <p>Discover clubs, get updates about upcoming and past events, and connect with organizing teams.</p>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="somaiya.svg" alt="Somaiya Logo" height="50">
+            </div>
+            <nav>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="clubs.html" class="active">Club Hub</a>
+                <a href="forums.html">Forums</a>
+                <a href="ask-questions.html">Ask Questions</a>
+                <a href="knowledge-base.html">Knowledge Base</a>
+                <a href="index.html" onclick="localStorage.removeItem('isLoggedIn')">Logout</a>
+            </nav>
+        </div>
+    </header>
 
+    <div class="hero-section">
+        <div class="container">
+            <h1>Campus Club Hub</h1>
+            <p>Discover clubs, get updates about events, and connect with organizing teams</p>
+        </div>
+    </div>
+
+    <div class="container">
         <div class="clubs-list">
             <!-- S4DS -->
             <div class="club-card">

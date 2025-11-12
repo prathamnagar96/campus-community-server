@@ -19,23 +19,127 @@
             <input type="text" id="userId" placeholder="User ID *" required>
             <input type="password" id="password" placeholder="Password *" required>
             <div class="options">
-                <label><input type="checkbox"> Remember Me</label>
-                <a href="#" class="forgot">Forgot Password?</a>
+                <label><input type="checkbox" id="rememberMe"> Remember Me</label>
+                <a href="#" class="forgot" id="forgotPassword">Forgot Password?</a>
             </div>
             <button type="submit" class="login-btn">Login</button>
         </form>
         <div class="divider">OR</div>
-        <button class="email-login" onclick="alert('Email login coming soon!')">
+        <button class="email-login" id="emailLoginBtn">
             Login with Somaiya Email ID
         </button>
-        <p class="signup-link">Don't have an account? <a href="#">Sign Up</a></p>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Reset Password</h2>
+            <p>Enter your Somaiya email ID to receive reset instructions</p>
+            <input type="email" id="resetEmail" placeholder="email@somaiya.edu *" required>
+            <button id="sendResetBtn" class="login-btn">Send Reset Link</button>
+        </div>
+    </div>
+
+    <!-- Email Login Modal -->
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login with Somaiya Email</h2>
+            <input type="email" id="somaiyaEmail" placeholder="email@somaiya.edu *" required>
+            <input type="password" id="emailPassword" placeholder="Password *" required>
+            <button id="emailSubmitBtn" class="login-btn">Login</button>
+        </div>
     </div>
 
     <script>
+        // Check if user credentials are saved
+        window.addEventListener('load', function () {
+            const savedUserId = localStorage.getItem('rememberedUserId');
+            const savedPassword = localStorage.getItem('rememberedPassword');
+            if (savedUserId && savedPassword) {
+                document.getElementById('userId').value = savedUserId;
+                document.getElementById('password').value = savedPassword;
+                document.getElementById('rememberMe').checked = true;
+            }
+        });
+
+        // Regular login
         document.getElementById('loginForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            alert('Login functionality will be connected to backend!');
+            const userId = document.getElementById('userId').value;
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+
+            if (rememberMe) {
+                localStorage.setItem('rememberedUserId', userId);
+                localStorage.setItem('rememberedPassword', password);
+            } else {
+                localStorage.removeItem('rememberedUserId');
+                localStorage.removeItem('rememberedPassword');
+            }
+
+            localStorage.setItem('isLoggedIn', 'true');
             window.location.href = 'dashboard.html';
+        });
+
+        // Forgot Password
+        const forgotModal = document.getElementById('forgotModal');
+        document.getElementById('forgotPassword').addEventListener('click', function (e) {
+            e.preventDefault();
+            forgotModal.style.display = 'block';
+        });
+
+        document.getElementById('sendResetBtn').addEventListener('click', function () {
+            const email = document.getElementById('resetEmail').value;
+            if (!email.endsWith('@somaiya.edu')) {
+                alert('Please enter a valid Somaiya email address (must end with @somaiya.edu)');
+                return;
+            }
+            alert('Password reset link has been sent to ' + email);
+            forgotModal.style.display = 'none';
+            document.getElementById('resetEmail').value = '';
+        });
+
+        // Email Login
+        const emailModal = document.getElementById('emailModal');
+        document.getElementById('emailLoginBtn').addEventListener('click', function () {
+            emailModal.style.display = 'block';
+        });
+
+        document.getElementById('emailSubmitBtn').addEventListener('click', function () {
+            const email = document.getElementById('somaiyaEmail').value;
+            const password = document.getElementById('emailPassword').value;
+
+            if (!email.endsWith('@somaiya.edu')) {
+                alert('Please enter a valid Somaiya email address (must end with @somaiya.edu)');
+                return;
+            }
+
+            if (password.length < 1) {
+                alert('Please enter your password');
+                return;
+            }
+
+            localStorage.setItem('isLoggedIn', 'true');
+            window.location.href = 'dashboard.html';
+        });
+
+        // Close modals
+        document.querySelectorAll('.close').forEach(function (closeBtn) {
+            closeBtn.addEventListener('click', function () {
+                forgotModal.style.display = 'none';
+                emailModal.style.display = 'none';
+            });
+        });
+
+        window.addEventListener('click', function (e) {
+            if (e.target === forgotModal) {
+                forgotModal.style.display = 'none';
+            }
+            if (e.target === emailModal) {
+                emailModal.style.display = 'none';
+            }
         });
     </script>
 </body>

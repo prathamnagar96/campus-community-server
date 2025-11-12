@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Questions - CampusConnect</title>
+    <link rel="stylesheet" href="ask-questions-styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="somaiya.svg" alt="Somaiya Logo" height="50">
+            </div>
+            <nav>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="clubs.html">Club Hub</a>
+                <a href="forums.html">Forums</a>
+                <a href="ask-questions.html" class="active">Ask Questions</a>
+                <a href="knowledge-base.html">Knowledge Base</a>
+                <a href="index.html" onclick="localStorage.removeItem('isLoggedIn')">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <h1>Smart Q&A System</h1>
+            <p>Get your doubts resolved by teachers and peers</p>
+            <button class="btn-primary" id="askQuestionBtn">Ask a Question</button>
+        </div>
+    </section>
+
+    <section class="filters-section">
+        <div class="container">
+            <div class="filter-bar">
+                <select id="subjectFilter">
+                    <option value="all">All Subjects</option>
+                    <option value="mathematics">Mathematics</option>
+                    <option value="physics">Physics</option>
+                    <option value="chemistry">Chemistry</option>
+                    <option value="cs">Computer Science</option>
+                    <option value="engineering">Engineering</option>
+                </select>
+                <select id="statusFilter">
+                    <option value="all">All Questions</option>
+                    <option value="answered">Answered</option>
+                    <option value="unanswered">Unanswered</option>
+                    <option value="verified">Teacher Verified</option>
+                </select>
+                <input type="text" id="searchBox" placeholder="Search questions...">
+            </div>
+        </div>
+    </section>
+
+    <section class="questions-section">
+        <div class="container">
+            <div class="question-card verified">
+                <div class="question-header">
+                    <div class="user-info">
+                        <div class="avatar">JD</div>
+                        <div>
+                            <h4>John Doe</h4>
+                            <span class="meta">2 hours ago • Computer Science</span>
+                        </div>
+                    </div>
+                    <span class="verified-badge">✓ Teacher Verified</span>
+                </div>
+                <h3 class="question-title">How does dynamic programming differ from divide and conquer?</h3>
+                <p class="question-body">I'm confused about when to use dynamic programming versus divide and conquer.
+                    Can someone explain with examples?</p>
+                <div class="question-tags">
+                    <span class="tag">Algorithms</span>
+                    <span class="tag">DSA</span>
+                </div>
+                <div class="question-footer">
+                    <button class="vote-btn">↑ 24</button>
+                    <button class="answer-btn">5 Answers</button>
+                    <button class="save-btn">Save</button>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="user-info">
+                        <div class="avatar">AS</div>
+                        <div>
+                            <h4>Alice Smith</h4>
+                            <span class="meta">5 hours ago • Mathematics</span>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="question-title">Can someone explain Laplace Transform applications?</h3>
+                <p class="question-body">I understand the theory but struggling with real-world applications. Where is
+                    it used in engineering?</p>
+                <div class="question-tags">
+                    <span class="tag">Calculus</span>
+                    <span class="tag">Engineering Math</span>
+                </div>
+                <div class="question-footer">
+                    <button class="vote-btn">↑ 12</button>
+                    <button class="answer-btn">3 Answers</button>
+                    <button class="save-btn">Save</button>
+                </div>
+            </div>
+
+            <div class="question-card unanswered">
+                <div class="question-header">
+                    <div class="user-info">
+                        <div class="avatar">RK</div>
+                        <div>
+                            <h4>Raj Kumar</h4>
+                            <span class="meta">1 day ago • Physics</span>
+                        </div>
+                    </div>
+                    <span class="unanswered-badge">Unanswered</span>
+                </div>
+                <h3 class="question-title">Help with quantum mechanics uncertainty principle?</h3>
+                <p class="question-body">I'm having trouble understanding Heisenberg's uncertainty principle. Can
+                    someone explain it simply?</p>
+                <div class="question-tags">
+                    <span class="tag">Quantum Physics</span>
+                </div>
+                <div class="question-footer">
+                    <button class="vote-btn">↑ 8</button>
+                    <button class="answer-btn">0 Answers</button>
+                    <button class="save-btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ask Question Modal -->
+    <div id="askModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Ask a Question</h2>
+            <form id="questionForm">
+                <input type="text" id="questionTitle" placeholder="Question Title *" required>
+                <textarea id="questionBody" placeholder="Describe your question in detail *" rows="6"
+                    required></textarea>
+                <select id="questionSubject" required>
+                    <option value="">Select Subject *</option>
+                    <option value="mathematics">Mathematics</option>
+                    <option value="physics">Physics</option>
+                    <option value="chemistry">Chemistry</option>
+                    <option value="cs">Computer Science</option>
+                    <option value="engineering">Engineering</option>
+                </select>
+                <input type="text" id="questionTags" placeholder="Add tags (comma separated)">
+                <button type="submit" class="btn-primary">Post Question</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('askModal');
+        const askBtn = document.getElementById('askQuestionBtn');
+        const closeBtn = document.querySelector('.close');
+
+        askBtn.addEventListener('click', () => {
+            modal.style.display = 'block';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        document.getElementById('questionForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Question posted successfully! You will be notified when someone answers.');
+            modal.style.display = 'none';
+            document.getElementById('questionForm').reset();
+        });
+
+        // Filter functionality
+        document.getElementById('subjectFilter').addEventListener('change', () => {
+            alert('Filter applied! (Backend integration needed)');
+        });
+
+        document.getElementById('statusFilter').addEventListener('change', () => {
+            alert('Filter applied! (Backend integration needed)');
+        });
+
+        document.getElementById('searchBox').addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                alert('Search feature will be implemented with backend');
+            }
+        });
+    </script>
+</body>
+
+</html>
